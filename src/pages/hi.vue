@@ -7,6 +7,6 @@ meta:
 </route>
 
 <template>
-	<IAntDesignUserOutlined />
+	<!-- <IAntDesignUserOutlined /> -->
 	<div>Hi</div>
 </template>

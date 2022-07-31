@@ -35,6 +35,7 @@ export default defineConfig({
 
 		// https://github.com/antfu/unplugin-auto-import
 		AutoImport({
+			dirs: ['src/composables', 'src/store'],
 			imports: [
 				'vue',
 				'vue-router',
@@ -43,14 +44,16 @@ export default defineConfig({
 				'@vueuse/core',
 			],
 			dts: 'src/auto-imports.d.ts',
-			dirs: ['src/composables', 'src/store'],
 			vueTemplate: true,
 		}),
 
 		// https://github.com/antfu/unplugin-vue-components
 		Components({
+			dirs: 'src/**/components',
 			resolvers: [
-				IconsResolver(),
+				IconsResolver({
+					prefix: 'icon',
+				}),
 				ElementPlusResolver({
 					importStyle: 'css',
 					ssr: true,
@@ -61,7 +64,11 @@ export default defineConfig({
 			dts: 'src/components.d.ts',
 		}),
 
-		Icons({compiler: 'vue3'}),
+		// https://github.com/antfu/unplugin-icons
+		Icons({
+			compiler: 'vue3',
+			autoInstall: true,
+		}),
 
 		// https://github.com/antfu/unocss
 		// see unocss.config.ts for config

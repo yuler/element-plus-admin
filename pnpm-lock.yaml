@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@iconify/json': ^2.1.83
+  '@types/js-cookie': ^3.0.2
   '@types/node': ^18.6.1
   '@types/nprogress': ^0.2.0
   '@vitejs/plugin-vue': ^3.0.1
@@ -9,6 +10,7 @@ specifiers:
   '@vueuse/core': ^8.9.4
   '@vueuse/head': ^0.7.7
   element-plus: ^2.2.10
+  js-cookie: ^3.0.1
   nprogress: ^0.2.0
   pinia: ^2.0.17
   typescript: ^4.7.4
@@ -30,6 +32,7 @@ dependencies:
   '@vueuse/core': 8.9.4_vue@3.2.37
   '@vueuse/head': 0.7.7_vue@3.2.37
   element-plus: 2.2.10_vue@3.2.37
+  js-cookie: 3.0.1
   nprogress: 0.2.0
   pinia: 2.0.17_j6bzmzd4ujpabbp5objtwxyjp4
   vue: 3.2.37
@@ -37,6 +40,7 @@ dependencies:
 
 devDependencies:
   '@iconify/json': 2.1.83
+  '@types/js-cookie': 3.0.2
   '@types/node': 18.6.1
   '@types/nprogress': 0.2.0
   '@vitejs/plugin-vue': 3.0.1_vite@3.0.3+vue@3.2.37
@@ -225,6 +229,10 @@ packages:
     resolution: {integrity: sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==}
     dependencies:
       '@types/ms': 0.7.31
+    dev: true
+
+  /@types/js-cookie/3.0.2:
+    resolution: {integrity: sha512-6+0ekgfusHftJNYpihfkMu8BWdeHs9EOJuGcSofErjstGPfPGEu9yTu4t460lTzzAMl2cM5zngQJqPMHbbnvYA==}
     dev: true
 
   /@types/lodash-es/4.17.6:
@@ -1648,6 +1656,11 @@ packages:
     resolution: {integrity: sha512-4IwstlaKQc9vCTC+qUXLM1hajy2ImiL9KnLvVYiaHOtS/v3wRjhLlGl121AmgDgx/O43uKmxownJghS5XMya2A==}
     hasBin: true
     dev: true
+
+  /js-cookie/3.0.1:
+    resolution: {integrity: sha512-+0rgsUXZu4ncpPxRL+lNEptWMOWl9etvPHc/koSRp6MPwpRYAhmk0dUG00J4bxVV3r9uUzfo24wW0knS07SKSw==}
+    engines: {node: '>=12'}
+    dev: false
 
   /jsdom/20.0.0:
     resolution: {integrity: sha512-x4a6CKCgx00uCmP+QakBDFXwjAJ69IkkIWHmtmjd3wvXPcdOS44hfX2vqkOQrVrq8l9DhNNADZRXaCEWvgXtVA==}
