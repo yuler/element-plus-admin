@@ -1,0 +1,14 @@
+# Mac
+.DS_Store
+
+# Node.js
+node_modules
+dist
+.vite-ssg-temp
+
+# Editor
+.idea
+
+# Logs
+*.log
+*.logs
