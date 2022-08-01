@@ -1,7 +1,19 @@
+<script lang="ts" setup>
+defineProps({
+	collapsed: Boolean,
+})
+defineEmits(['update:collapsed'])
+</script>
+
 <template>
 	<div w="full" h="full" flex items="center" justify="between">
 		<div h="full" flex>
-			<div h="full" px="4" cursor="pointer">
+			<div
+				h="full"
+				px="4"
+				cursor="pointer"
+				@click="$emit('update:collapsed', !collapsed)"
+			>
 				<el-icon size="18" h="full">
 					<icon-ant-design-MenuUnfoldOutlined />
 				</el-icon>

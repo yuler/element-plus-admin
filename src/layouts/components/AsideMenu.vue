@@ -1,9 +1,19 @@
 <script lang="ts" setup>
-// TODO:
+const props = defineProps({
+	collapsed: Boolean,
+})
+defineEmits(['update:collapsed'])
+
+watch(
+	() => props.collapsed,
+	() => {
+		console.log(props.collapsed)
+	},
+)
 </script>
 
 <template>
-	<el-menu bg="transparent">
+	<el-menu bg="transparent" :collapse="collapsed">
 		<el-sub-menu index="1">
 			<template #title>
 				<icon-ep-setting />

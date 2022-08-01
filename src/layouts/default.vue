@@ -5,21 +5,24 @@ const asideDrawder = ref<boolean>(false)
 
 <template>
 	<el-container>
-		<el-aside w="200px" min-h="100vh" bg="[#001428]">
+		<el-aside w="auto" min-h="100vh" bg="[#001428]">
 			<el-scrollbar>
 				<AsideLogo :collapsed="collapsed" />
-				<AsideMenu />
+				<AsideMenu v-model:collapsed="collapsed" />
 			</el-scrollbar>
 		</el-aside>
 
 		<el-drawer v-model="asideDrawder" direction="ltr" :size="64">
 			<AsideLogo :collapsed="collapsed" />
-			<AsideMenu @clickMenuItem="collapsed = false" />
+			<AsideMenu
+				v-model:collapsed="collapsed"
+				@clickMenuItem="collapsed = false"
+			/>
 		</el-drawer>
 
 		<el-container bg="#f5f7f9">
 			<el-header h="64px" bg="white">
-				<Navbar />
+				<Navbar v-model:collapsed="collapsed" />
 			</el-header>
 			<el-main>
 				<TabsView />
