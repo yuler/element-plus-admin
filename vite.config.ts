@@ -1,5 +1,6 @@
 import path from 'node:path'
 import {defineConfig, splitVendorChunkPlugin} from 'vite'
+import visualizer from 'rollup-plugin-visualizer'
 import Vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
@@ -23,6 +24,14 @@ export default defineConfig({
 	},
 
 	plugins: [
+		process.env.VISUALIZER &&
+			visualizer({
+				filename: './node_modules/.cache/visualizer/stats.html',
+				open: true,
+				gzipSize: true,
+				brotliSize: true,
+			}),
+
 		splitVendorChunkPlugin(),
 
 		Vue({
