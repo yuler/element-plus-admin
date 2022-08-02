@@ -1,5 +1,5 @@
 import path from 'node:path'
-import {defineConfig} from 'vite'
+import {defineConfig, splitVendorChunkPlugin} from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
@@ -12,6 +12,10 @@ import Unocss from 'unocss/vite'
 import Inspect from 'vite-plugin-inspect'
 
 export default defineConfig({
+	define: {
+		// https://github.com/vuejs/core/tree/main/packages/vue#bundler-build-feature-flags
+		__VUE_OPTIONS_API__: false,
+	},
 	resolve: {
 		alias: {
 			'~/': `${path.resolve(__dirname, 'src')}/`,
@@ -19,6 +23,8 @@ export default defineConfig({
 	},
 
 	plugins: [
+		splitVendorChunkPlugin(),
+
 		Vue({
 			include: [/\.vue$/, /\.md$/],
 			reactivityTransform: true,

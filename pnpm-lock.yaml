@@ -32,7 +32,6 @@ dependencies:
   '@vueuse/core': 8.9.4_vue@3.2.37
   '@vueuse/head': 0.7.7_vue@3.2.37
   element-plus: 2.2.10_vue@3.2.37
-  js-cookie: 3.0.1
   nprogress: 0.2.0
   pinia: 2.0.17_j6bzmzd4ujpabbp5objtwxyjp4
   vue: 3.2.37
@@ -45,6 +44,7 @@ devDependencies:
   '@types/nprogress': 0.2.0
   '@vitejs/plugin-vue': 3.0.1_vite@3.0.3+vue@3.2.37
   '@vue/compiler-sfc': 3.2.37
+  js-cookie: 3.0.1
   typescript: 4.7.4
   unocss: 0.44.7_vite@3.0.3
   unplugin-auto-import: 0.9.5_ast4kmefllg5fcmw2swrbuhaxq
@@ -1660,7 +1660,7 @@ packages:
   /js-cookie/3.0.1:
     resolution: {integrity: sha512-+0rgsUXZu4ncpPxRL+lNEptWMOWl9etvPHc/koSRp6MPwpRYAhmk0dUG00J4bxVV3r9uUzfo24wW0knS07SKSw==}
     engines: {node: '>=12'}
-    dev: false
+    dev: true
 
   /jsdom/20.0.0:
     resolution: {integrity: sha512-x4a6CKCgx00uCmP+QakBDFXwjAJ69IkkIWHmtmjd3wvXPcdOS44hfX2vqkOQrVrq8l9DhNNADZRXaCEWvgXtVA==}
