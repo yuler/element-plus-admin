@@ -14,6 +14,11 @@
 - Recommend use [VS Code](https://code.visualstudio.com/) & Install [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) plugin
 - `pnpm install`
 
+## Related
+
+- https://github.com/jekip/naive-ui-admin
+- https://github.com/xiaoxian521/vue-pure-admin
+
 ## RoadMap
 
 - [ ] 编写文档/使用指南

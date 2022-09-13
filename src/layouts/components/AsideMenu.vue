@@ -7,6 +7,7 @@ defineEmits(['update:collapsed'])
 watch(
 	() => props.collapsed,
 	() => {
+		// TODO:
 		console.log(props.collapsed)
 	},
 )
@@ -20,7 +21,6 @@ watch(
 				<span>Navigator One</span>
 			</template>
 			<el-menu-item-group>
-				<!-- <template #title>Group 1</template> -->
 				<el-menu-item index="1-1">Option 1</el-menu-item>
 				<el-menu-item index="1-2">Option 2</el-menu-item>
 			</el-menu-item-group>

@@ -1,11 +1,17 @@
 <script lang="ts" setup>
+import {config} from '~/config'
+
 const collapsed = ref<boolean>(false)
 const asideDrawder = ref<boolean>(false)
 </script>
 
 <template>
 	<el-container>
-		<el-aside w="auto" min-h="100vh" bg="[#001428]">
+		<el-aside
+			min-h="100vh"
+			:style="{background: config.aside.backgroundColor}"
+			:width="collapsed ? 'auto' : config.aside.width"
+		>
 			<el-scrollbar>
 				<AsideLogo :collapsed="collapsed" />
 				<AsideMenu v-model:collapsed="collapsed" />

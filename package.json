@@ -2,6 +2,7 @@
 	"name": "sparrow-admin-ui",
 	"private": true,
 	"version": "0.0.0",
+	"packageManager": "pnpm@7.5.2",
 	"author": "yule <yule@col.com>",
 	"scripts": {
 		"dev": "vite --open",
