@@ -8,8 +8,9 @@ const asideDrawder = ref<boolean>(false)
 <template>
 	<el-container>
 		<el-aside
+			translate="width-ease-200"
 			min-h="100vh"
-			:style="{background: config.aside.backgroundColor}"
+			:style="{background: config.aside.bgColor}"
 			:width="collapsed ? 'auto' : config.aside.width"
 		>
 			<el-scrollbar>
