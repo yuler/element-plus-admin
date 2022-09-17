@@ -1,10 +1,10 @@
 <route lang="yaml">
 meta:
-    title: 首页
+  title: Welcome
 </route>
 
 <script lang="ts" setup></script>
 
 <template>
-	<el-button>Button</el-button>
+  <el-button>Button</el-button>
 </template>

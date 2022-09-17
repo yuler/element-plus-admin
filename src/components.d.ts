@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AsideLogo: typeof import('./layouts/components/AsideLogo.vue')['default']
     AsideMenu: typeof import('./layouts/components/AsideMenu.vue')['default']
+    AsideMenuItem: typeof import('./layouts/components/AsideMenuItem.vue')['default']
     ElAside: typeof import('element-plus/lib')['ElAside']
     ElAvatar: typeof import('element-plus/lib')['ElAvatar']
     ElBreadcrumb: typeof import('element-plus/lib')['ElBreadcrumb']
@@ -23,6 +24,7 @@ declare module '@vue/runtime-core' {
     ElMenuItem: typeof import('element-plus/lib')['ElMenuItem']
     ElMenuItemGroup: typeof import('element-plus/lib')['ElMenuItemGroup']
     ElScrollbar: typeof import('element-plus/lib')['ElScrollbar']
+    ElSubmenu: typeof import('element-plus/lib')['ElSubmenu']
     ElSubMenu: typeof import('element-plus/lib')['ElSubMenu']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     IconAntDesignGithubOutlined: typeof import('~icons/ant-design/github-outlined')['default']

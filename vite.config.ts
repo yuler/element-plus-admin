@@ -74,7 +74,7 @@ export default defineConfig({
 					ssr: true,
 				}),
 			],
-			extensions: ['vue', 'md'],
+			extensions: ['vue', 'md', 'ts'],
 			include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
 			dts: 'src/components.d.ts',
 		}),

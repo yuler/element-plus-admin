@@ -1,3 +1,3 @@
 <template>
-	<p>TabsView</p>
+  <p>TabsView</p>
 </template>
