@@ -1,7 +1,7 @@
 <route lang="yaml">
 meta:
+  hideInMenu: true
   title: 404
-#   icon: IAntDesignUserOutlined
 </route>
 
 <script setup lang="ts">
