@@ -1,10 +1,9 @@
 <script lang="ts" setup>
 import type {RouteRecordRaw} from 'vue-router'
+import {capitalize} from '~/utils'
 
-// props
 defineProps<{
   item: RouteRecordRaw
-  isNest?: Boolean
 }>()
 </script>
 
@@ -13,20 +12,20 @@ defineProps<{
     <router-link :to="item.path">
       <el-menu-item :index="item.path">
         <template #title>
-          {{ item.meta?.title }}
+          <AsideMenuItemTitle
+            :title="item.meta?.title?.toString() as string || capitalize(item.name as string)"
+            :icon="(item.meta?.icon as string)"
+          />
         </template>
       </el-menu-item>
     </router-link>
   </template>
   <el-sub-menu v-else ref="subMenu" :index="item.path">
     <template #title>
-      <!-- TODO: Support w/ icon -->
-      {{ item.meta?.title || item.name }}
-      <!-- <item
-				v-if="item.meta"
-				:icon="item.meta && item.meta.icon"
-				:title="item.meta.title"
-			/> -->
+      <AsideMenuItemTitle
+        :title="item.meta?.title?.toString() as string || capitalize(item.name as string)"
+        :icon="(item.meta?.icon as string)"
+      />
     </template>
     <AsideMenuItem
       v-for="child in item.children"

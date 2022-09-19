@@ -61,6 +61,7 @@ watch(
       '--el-menu-acitve-bg-color': config.menu.activeBgColor,
       '--el-menu-border-color': config.menu.borderColor,
     }"
+    :default-active="$route.path"
   >
     <AsideMenuItem v-for="menu in menus" :key="menu.path" :item="menu" />
   </el-menu>
