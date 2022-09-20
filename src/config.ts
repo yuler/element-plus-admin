@@ -5,6 +5,11 @@ export const config = Object.freeze({
     width: '240px',
     bgColor: '#001428',
   },
+  drawer: {
+    padding: '0px',
+    width: '200px',
+    bgColor: '#001428',
+  },
   menu: {
     textColor: '#bbb',
     hoverTextColor: '#fff',

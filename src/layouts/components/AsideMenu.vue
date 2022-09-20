@@ -13,7 +13,7 @@ defineEmits(['update:collapsed'])
 const menus = ref<RouteRecordRaw[]>([])
 
 onMounted(() => {
-  // Generate menus from routes
+  // Generate menus from routes. TODO: move to utils
   const routes = pages
     .map(page => ({...page})) // simple clone
     .sort((a, b) => {
@@ -90,6 +90,7 @@ watch(
 </template>
 
 <style scoped>
+/* TODO: some styles */
 /* Some colors are not exposed via css variable */
 :deep(.el-sub-menu__title:hover),
 :deep(.el-menu-item:hover) {

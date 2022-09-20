@@ -1,48 +1,43 @@
 import Cookies from 'js-cookie'
 import {defineStore} from 'pinia'
-
-interface Sidebar {
-  opened: boolean
-  withoutAnimation: boolean
-}
-type Device = 'desktop' | 'mobile'
-type Size = 'medium' | 'small'
+import type {AppDevice} from '~/types'
 
 export const useAppStore = defineStore('app', () => {
-  const sidebar = ref<Sidebar>({
-    opened: Cookies.get('APP_SIDEBAR_OPENED') !== 'false',
-    withoutAnimation: false,
-  })
-  const device = ref<Device>('desktop')
-  const size = ref<Size>('medium')
-
-  function setDevice(value: Device) {
+  const device = ref<AppDevice>('desktop')
+  function setDevice(value: AppDevice) {
     device.value = value
   }
-  function toggleSidebar() {
-    sidebar.value.opened = !sidebar.value.opened
-    sidebar.value.withoutAnimation = false
-    if (sidebar.value.opened) {
-      Cookies.set('APP_SIDEBAR_OPENED', 'true')
+
+  const asideCollapsed = ref<boolean>(!!Cookies.get('APP_ASIDE_COLLAPSED'))
+  function asideCollapse() {
+    Cookies.set('APP_ASIDE_COLLAPSED', '1')
+    asideCollapsed.value = false
+  }
+  function asideToggle() {
+    asideCollapsed.value = !asideCollapsed.value
+    if (asideCollapsed.value) {
+      Cookies.set('APP_ASIDE_COLLAPSED', '1')
     } else {
-      Cookies.set('APP_SIDEBAR_OPENED', 'false')
+      Cookies.remove('APP_ASIDE_COLLAPSED')
     }
   }
-  function closeSideBar({withoutAnimation}: {withoutAnimation: boolean}) {
-    sidebar.value.opened = false
-    sidebar.value.withoutAnimation = withoutAnimation
+
+  const drawerDisplay = ref<boolean>(false)
+  function drawerCollapse() {
+    drawerDisplay.value = false
   }
-  function setSize(value: Size) {
-    size.value = value
+  function drawerToggle() {
+    drawerDisplay.value = !drawerDisplay.value
   }
 
   return {
-    sidebar,
     device,
-    size,
-    toggleSidebar,
-    closeSideBar,
+    asideCollapsed,
+    asideCollapse,
+    asideToggle,
     setDevice,
-    setSize,
+    drawerDisplay,
+    drawerCollapse,
+    drawerToggle,
   }
 })

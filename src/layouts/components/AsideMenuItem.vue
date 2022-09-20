@@ -2,30 +2,38 @@
 import type {RouteRecordRaw} from 'vue-router'
 import {capitalize} from '~/utils'
 
-defineProps<{
+const {drawerCollapse} = useAppStore()
+
+const props = defineProps<{
   item: RouteRecordRaw
 }>()
+
+const formatTitle = computed(() => {
+  return (
+    props.item.meta?.title?.toString() || capitalize(props.item.name as string)
+  )
+})
 </script>
 
 <template>
   <template v-if="!item.children">
     <router-link :to="item.path">
-      <el-menu-item :index="item.path">
+      <el-menu-item :index="item.path" @click="drawerCollapse">
+        <el-icon>
+          <component :is="item.meta?.icon" />
+        </el-icon>
         <template #title>
-          <AsideMenuItemTitle
-            :title="item.meta?.title?.toString() as string || capitalize(item.name as string)"
-            :icon="(item.meta?.icon as string)"
-          />
+          {{ formatTitle }}
         </template>
       </el-menu-item>
     </router-link>
   </template>
   <el-sub-menu v-else ref="subMenu" :index="item.path">
     <template #title>
-      <AsideMenuItemTitle
-        :title="item.meta?.title?.toString() as string || capitalize(item.name as string)"
-        :icon="(item.meta?.icon as string)"
-      />
+      <el-icon>
+        <component :is="item.meta?.icon" />
+      </el-icon>
+      <span>{{ formatTitle }}</span>
     </template>
     <AsideMenuItem
       v-for="child in item.children"
