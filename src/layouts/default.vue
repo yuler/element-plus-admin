@@ -1,35 +1,51 @@
 <script lang="ts" setup>
 import {config} from '~/config'
-const {asideMenu} = useAppStore()
 
-const asideDrawder = ref<boolean>(false)
+setupWindowResize()
+
+const appStore = useAppStore()
+const {asideToggle, drawerCollapse, drawerToggle} = appStore
+const {device, asideCollapsed, drawerDisplay} = storeToRefs(appStore)
+
+function onToggleMenuCollapsed() {
+  if (device.value === 'mobile') {
+    drawerToggle()
+  } else {
+    asideToggle()
+  }
+}
 </script>
 
 <template>
   <el-container>
     <el-aside
+      v-if="device != 'mobile'"
       translate="width-ease-200"
       min-h="100vh"
       :style="{background: config.aside.bgColor}"
-      :width="asideMenu.collapsed ? 'auto' : config.aside.width"
+      :width="asideCollapsed ? 'auto' : config.aside.width"
     >
       <el-scrollbar>
-        <AsideLogo :collapsed="asideMenu.collapsed" />
-        <AsideMenu v-model:collapsed="asideMenu.collapsed" />
+        <AsideLogo :collapsed="asideCollapsed" />
+        <AsideMenu v-model:collapsed="asideCollapsed" />
       </el-scrollbar>
     </el-aside>
 
-    <el-drawer v-model="asideDrawder" direction="ltr" :size="64">
-      <AsideLogo :collapsed="asideMenu.collapsed" />
-      <AsideMenu
-        v-model:collapsed="asideMenu.collapsed"
-        @clickMenuItem="asideMenu.collapsed = false"
-      />
-    </el-drawer>
+    <div v-else fixed w-full h-full @click="drawerCollapse">
+      <el-drawer
+        v-model="drawerDisplay"
+        direction="ltr"
+        :size="config.drawer.width"
+        :with-header="false"
+      >
+        <AsideLogo :collapsed="!drawerDisplay" />
+        <AsideMenu />
+      </el-drawer>
+    </div>
 
     <el-container bg="#f5f7f9">
       <el-header h="64px" bg="white">
-        <Navbar v-model:collapsed="asideMenu.collapsed" />
+        <Navbar @update:collapsed="onToggleMenuCollapsed" />
       </el-header>
       <el-main>
         <TabsView />
@@ -38,3 +54,11 @@ const asideDrawder = ref<boolean>(false)
     </el-container>
   </el-container>
 </template>
+
+<style>
+/* TODO: */
+.el-drawer {
+  --el-drawer-bg-color: v-bind('config.drawer.bgColor') !important;
+  --el-drawer-padding-primary: v-bind('config.drawer.padding') !important;
+}
+</style>

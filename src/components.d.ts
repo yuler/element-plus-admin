@@ -10,7 +10,6 @@ declare module '@vue/runtime-core' {
     AsideLogo: typeof import('./layouts/components/AsideLogo.vue')['default']
     AsideMenu: typeof import('./layouts/components/AsideMenu.vue')['default']
     AsideMenuItem: typeof import('./layouts/components/AsideMenuItem.vue')['default']
-    AsideMenuItemTitle: typeof import('./layouts/components/AsideMenuItemTitle.vue')['default']
     ElAside: typeof import('element-plus/lib')['ElAside']
     ElAvatar: typeof import('element-plus/lib')['ElAvatar']
     ElBreadcrumb: typeof import('element-plus/lib')['ElBreadcrumb']

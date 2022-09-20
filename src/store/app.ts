@@ -1,43 +1,43 @@
 import Cookies from 'js-cookie'
 import {defineStore} from 'pinia'
-
-interface AsideMenu {
-  collapsed: boolean
-  withoutAnimation: boolean
-}
-type Device = 'desktop' | 'tablet' | 'mobile'
+import type {AppDevice} from '~/types'
 
 export const useAppStore = defineStore('app', () => {
-  const asideMenu = ref<AsideMenu>({
-    collapsed: !!Cookies.get('APP_ASIDE_MENU_COLLAPSED'),
-    withoutAnimation: false,
-  })
-  const device = ref<Device>('desktop')
-
-  function setDevice(value: Device) {
+  const device = ref<AppDevice>('desktop')
+  function setDevice(value: AppDevice) {
     device.value = value
   }
 
-  function toggle() {
-    asideMenu.value.collapsed = !asideMenu.value.collapsed
-    asideMenu.value.withoutAnimation = false
-    if (asideMenu.value.collapsed) {
-      Cookies.set('APP_ASIDE_MENU_COLLAPSED', '1')
+  const asideCollapsed = ref<boolean>(!!Cookies.get('APP_ASIDE_COLLAPSED'))
+  function asideCollapse() {
+    Cookies.set('APP_ASIDE_COLLAPSED', '1')
+    asideCollapsed.value = false
+  }
+  function asideToggle() {
+    asideCollapsed.value = !asideCollapsed.value
+    if (asideCollapsed.value) {
+      Cookies.set('APP_ASIDE_COLLAPSED', '1')
     } else {
-      Cookies.remove('APP_ASIDE_MENU_COLLAPSED')
+      Cookies.remove('APP_ASIDE_COLLAPSED')
     }
   }
 
-  function collapse({withoutAnimation}: {withoutAnimation: boolean}) {
-    asideMenu.value.collapsed = false
-    asideMenu.value.withoutAnimation = withoutAnimation
+  const drawerDisplay = ref<boolean>(false)
+  function drawerCollapse() {
+    drawerDisplay.value = false
+  }
+  function drawerToggle() {
+    drawerDisplay.value = !drawerDisplay.value
   }
 
   return {
-    asideMenu,
     device,
-    toggle,
-    collapse,
+    asideCollapsed,
+    asideCollapse,
+    asideToggle,
     setDevice,
+    drawerDisplay,
+    drawerCollapse,
+    drawerToggle,
   }
 })
