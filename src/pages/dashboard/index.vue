@@ -1,6 +1,6 @@
 <route lang="yaml">
 meta:
-  title: Dashboard
+  title: t('menu.dashboard')
   icon: odometer
 </route>
 
