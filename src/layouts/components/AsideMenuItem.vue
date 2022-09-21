@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type {RouteRecordRaw} from 'vue-router'
 import {capitalize} from '~/utils'
+const {t} = useI18n()
 
 const {drawerCollapse} = useAppStore()
 
@@ -9,9 +10,13 @@ const props = defineProps<{
 }>()
 
 const formatTitle = computed(() => {
-  return (
-    props.item.meta?.title?.toString() || capitalize(props.item.name as string)
-  )
+  const {title, name} = props.item.meta ?? ({} as any)
+
+  if (/^t\((.*)\)$/.test(title)) {
+    const expression = title.replace(/^t\('(.*)'\)$/, '$1')
+    return t(expression)
+  }
+  return title || capitalize(name)
 })
 </script>
 
