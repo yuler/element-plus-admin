@@ -3,3 +3,4 @@ src/auto-imports.d.ts
 src/components.d.ts
 
 pnpm-lock.yaml
+plop-templates
