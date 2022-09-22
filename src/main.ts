@@ -3,7 +3,7 @@ import App from './App.vue'
 import {setupLayouts} from 'virtual:generated-layouts'
 import pages from '~pages'
 
-import '@unocss/reset/tailwind.css'
+// import '@unocss/reset/tailwind.css'
 import 'uno.css'
 import 'element-plus/theme-chalk/el-var.css'
 // TODO: Dynamic import when is drak theme

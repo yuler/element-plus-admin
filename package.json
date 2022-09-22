@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "packageManager": "pnpm@7.5.2",
-  "author": "yule <yule@col.com>",
+  "author": "yuler <is.yuler@col.com>",
   "scripts": {
     "g": "plop",
     "dev": "vite --open",
