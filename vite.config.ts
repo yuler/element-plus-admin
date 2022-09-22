@@ -1,5 +1,5 @@
 import path from 'node:path'
-import {defineConfig, splitVendorChunkPlugin} from 'vite'
+import {defineConfig, splitVendorChunkPlugin, loadEnv} from 'vite'
 import visualizer from 'rollup-plugin-visualizer'
 import Vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages'
@@ -13,94 +13,114 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Unocss from 'unocss/vite'
 import Inspect from 'vite-plugin-inspect'
 
-export default defineConfig({
-  define: {
-    // https://github.com/vuejs/core/tree/main/packages/vue#bundler-build-feature-flags
-    __VUE_OPTIONS_API__: false,
-  },
-  resolve: {
-    alias: {
-      '~/': `${path.resolve(__dirname, 'src')}/`,
-    },
-  },
+export default defineConfig(({mode}) => {
+  const env = loadEnv(mode, process.cwd(), '')
 
-  plugins: [
-    process.env.VISUALIZER &&
-      visualizer({
-        filename: './node_modules/.cache/visualizer/stats.html',
-        open: true,
-        gzipSize: true,
-        brotliSize: true,
+  return {
+    define: {
+      // https://github.com/vuejs/core/tree/main/packages/vue#bundler-build-feature-flags
+      __VUE_OPTIONS_API__: false,
+    },
+    resolve: {
+      alias: {
+        '~/': `${path.resolve(__dirname, 'src')}/`,
+      },
+    },
+
+    plugins: [
+      process.env.VISUALIZER &&
+        visualizer({
+          filename: './node_modules/.cache/visualizer/stats.html',
+          open: true,
+          gzipSize: true,
+          brotliSize: true,
+        }),
+
+      splitVendorChunkPlugin(),
+
+      Vue({
+        include: [/\.vue$/, /\.md$/],
+        reactivityTransform: true,
       }),
 
-    splitVendorChunkPlugin(),
+      // https://github.com/hannoeru/vite-plugin-pages
+      Pages({
+        exclude: ['**/components/*.vue'],
+        extensions: ['vue'],
+        extendRoute(route) {
+          // TODO: Set default route meta
+          if (!route.meta) route.meta = {}
+          if (route.meta.sortInMenu === undefined) route.meta.sortInMenu = 1000
+          return route
+        },
+      }),
 
-    Vue({
-      include: [/\.vue$/, /\.md$/],
-      reactivityTransform: true,
-    }),
+      // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
+      Layouts(),
 
-    // https://github.com/hannoeru/vite-plugin-pages
-    Pages({
-      exclude: ['**/components/*.vue'],
-      extensions: ['vue'],
-    }),
+      // https://github.com/antfu/unplugin-auto-import
+      AutoImport({
+        dirs: ['src/composables', 'src/store'],
+        imports: [
+          'vue',
+          'vue-router',
+          'vue-i18n',
+          'vue/macros',
+          '@vueuse/head',
+          '@vueuse/core',
+          'pinia',
+        ],
+        dts: 'src/auto-imports.d.ts',
+        vueTemplate: true,
+      }),
 
-    // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
-    Layouts(),
+      // https://github.com/antfu/unplugin-vue-components
+      Components({
+        dirs: 'src/**/components',
+        resolvers: [
+          IconsResolver({
+            prefix: 'icon',
+          }),
+          ElementPlusResolver({
+            importStyle: 'css',
+            ssr: true,
+          }),
+        ],
+        extensions: ['vue', 'md', 'ts'],
+        include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+        dts: 'src/components.d.ts',
+      }),
 
-    // https://github.com/antfu/unplugin-auto-import
-    AutoImport({
-      dirs: ['src/composables', 'src/store'],
-      imports: [
-        'vue',
-        'vue-router',
-        'vue-i18n',
-        'vue/macros',
-        '@vueuse/head',
-        '@vueuse/core',
-        'pinia',
-      ],
-      dts: 'src/auto-imports.d.ts',
-      vueTemplate: true,
-    }),
+      // https://github.com/antfu/unplugin-icons
+      Icons({
+        compiler: 'vue3',
+        autoInstall: true,
+      }),
 
-    // https://github.com/antfu/unplugin-vue-components
-    Components({
-      dirs: 'src/**/components',
-      resolvers: [
-        IconsResolver({
-          prefix: 'icon',
-        }),
-        ElementPlusResolver({
-          importStyle: 'css',
-          ssr: true,
-        }),
-      ],
-      extensions: ['vue', 'md', 'ts'],
-      include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-      dts: 'src/components.d.ts',
-    }),
+      // https://github.com/antfu/unocss
+      // see unocss.config.ts for config
+      Unocss(),
 
-    // https://github.com/antfu/unplugin-icons
-    Icons({
-      compiler: 'vue3',
-      autoInstall: true,
-    }),
+      // https://github.com/intlify/bundle-tools/tree/main/packages/vite-plugin-vue-i18n
+      VueI18n({
+        runtimeOnly: true,
+        compositionOnly: true,
+        include: [path.resolve(__dirname, 'locales/**')],
+      }),
 
-    // https://github.com/antfu/unocss
-    // see unocss.config.ts for config
-    Unocss(),
+      // https://github.com/antfu/vite-plugin-inspect
+      // Visit http://localhost:3333/__inspect/ to see the inspector
+      Inspect(),
+    ],
 
-    // https://github.com/intlify/bundle-tools/tree/main/packages/vite-plugin-vue-i18n
-    VueI18n({
-      runtimeOnly: true,
-      compositionOnly: true,
-      include: [path.resolve(__dirname, 'locales/**')],
-    }),
-
-    // https://github.com/antfu/vite-plugin-inspect
-    // Visit http://localhost:3333/__inspect/ to see the inspector
-    Inspect(),
-  ],
+    server: {
+      proxy: {
+        '^/api': {
+          target: env.VITE_API_ROOT,
+          changeOrigin: true,
+          rewrite: path => path.replace(/^\/api/, ''),
+        },
+      },
+    },
+  }
 })

@@ -3,6 +3,7 @@ import App from './App.vue'
 import {setupLayouts} from 'virtual:generated-layouts'
 import pages from '~pages'
 
+// TODO: Conflict with element-plus
 // import '@unocss/reset/tailwind.css'
 import 'uno.css'
 import 'element-plus/theme-chalk/el-var.css'

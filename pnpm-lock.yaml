@@ -13,6 +13,7 @@ specifiers:
   '@vueuse/head': ^0.7.11
   element-plus: ^2.2.16
   js-cookie: ^3.0.1
+  ky: ^0.31.3
   nprogress: ^0.2.0
   pinia: ^2.0.22
   plop: ^3.1.1
@@ -38,6 +39,7 @@ dependencies:
   '@vueuse/core': 9.2.0_vue@3.2.39
   '@vueuse/head': 0.7.11_vue@3.2.39
   element-plus: 2.2.16_vue@3.2.39
+  ky: 0.31.3
   nprogress: 0.2.0
   pinia: 2.0.22_arz4dztosvwy2ghjrlh2wdhejm
   vue: 3.2.39
@@ -2456,6 +2458,11 @@ packages:
   /kolorist/1.5.1:
     resolution: {integrity: sha512-lxpCM3HTvquGxKGzHeknB/sUjuVoUElLlfYnXZT73K8geR9jQbroGlSCFBax9/0mpGoD3kzcMLnOlGQPJJNyqQ==}
     dev: true
+
+  /ky/0.31.3:
+    resolution: {integrity: sha512-YDDQKG0Lt4PFSPZGJI8WKAm5y+1ebbeA306am+4nT7riX13wjNVD5sR/QOKtgsaQaARwrdUHlv0M9kJ1qv+Jug==}
+    engines: {node: '>=14.16'}
+    dev: false
 
   /levn/0.3.0:
     resolution: {integrity: sha512-0OO4y2iOHix2W6ujICbKIaEQXvFQHue65vUG3pb5EUomzPI90z9hsA1VsO/dbIIpC53J8gxM9Q4Oho0jrCM/yA==}
