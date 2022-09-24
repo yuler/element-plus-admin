@@ -1,10 +1,10 @@
 {
-  "name": "sparrow-admin-ui",
+  "name": "element-plus-admin",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "packageManager": "pnpm@7.5.2",
-  "author": "yuler <is.yuler@col.com>",
+  "author": "yuler <is.yuler@gmail.com>",
   "scripts": {
     "g": "plop",
     "dev": "vite --open",
