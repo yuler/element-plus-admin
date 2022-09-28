@@ -5,21 +5,18 @@
 ## Features
 
 - ⚡️ [Vite 3](https://github.com/vitejs/vite), [Vue 3](https://github.com/vuejs/core), [Element Plus](https://element-plus.org/), [pnpm](https://pnpm.io/)
-- 🗂 [File based routing](./src/pages)
-- 📦 [Components auto importing](./src/components)
+- 🗂 File based routing & layouts power by [vite-plugin-pages](https://github.com/hannoeru/vite-plugin-pages) & [vite-plugin-vue-layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)
+- 📦 [Components auto importing] power by [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components)
 - 🍍 [State Management via Pinia](https://pinia.vuejs.org/)
-- 📑 [Layout system](./src/layouts)
-- 📲 [PWA](https://github.com/antfu/vite-plugin-pwa)
+<!-- - 📲 [PWA](https://github.com/antfu/vite-plugin-pwa) -->
 - 🎨 [UnoCSS](https://github.com/antfu/unocss) - the instant on-demand atomic CSS engine
 - 😃 [Use icons from any icon sets with classes](https://github.com/antfu/unocss/tree/main/packages/preset-icons)
-- 🌍 [I18n ready](./locales)
-- 🔎 [Component Preview](https://github.com/antfu/vite-plugin-vue-component-preview)
-- 🗒 [Markdown Support](https://github.com/antfu/vite-plugin-vue-markdown)
+- 🌍 I18n ready power by [vue-i18n](https://github.com/intlify/vue-i18n-next)
+<!-- - 🔎 [Component Preview](https://github.com/antfu/vite-plugin-vue-component-preview)
+- 🗒 [Markdown Support](https://github.com/antfu/vite-plugin-vue-markdown) -->
 - 🔥 Use the [new `<script setup>` syntax](https://github.com/vuejs/rfcs/pull/227)
 - 🤙🏻 [Reactivity Transform](https://vuejs.org/guide/extras/reactivity-transform.html) enabled
 - 📥 [APIs auto importing](https://github.com/antfu/unplugin-auto-import) - use Composition API and others directly
-- 🦔 Critical CSS via [critters](https://github.com/GoogleChromeLabs/critters)
-- 🦾 TypeScript, of course
 
 ## Development Guide
 
