@@ -9,8 +9,7 @@ const props = defineProps<{
 }>()
 
 const formatTitle = computed(() => {
-  const {title, name} = props.item.meta ?? ({} as any)
-
+  const {title = '', name = ''} = props.item.meta ?? ({} as any)
   return title || capitalize(name)
 })
 </script>

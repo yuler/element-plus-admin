@@ -1,10 +1,11 @@
 <route lang="yaml">
 meta:
   title: Welcome
+  hideInMenu: true
 </route>
 
 <script lang="ts" setup></script>
 
 <template>
-  <p>xxx</p>
+  <h1>Welcome</h1>
 </template>

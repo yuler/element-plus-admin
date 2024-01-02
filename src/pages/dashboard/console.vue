@@ -1,6 +1,6 @@
 <route lang="yaml">
 meta:
-  title: Console
+  title: 控制面板
   icon: user
 </route>
 

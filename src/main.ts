@@ -14,6 +14,7 @@ import './main.css'
 const app = createApp(App)
 
 // Setup routes
+// TODO:
 const routes = setupLayouts(_routes)
 const router = createRouter({
   extendRoutes(routes) {
@@ -23,7 +24,7 @@ const router = createRouter({
         route.meta.sortInMenu = 1000
       }
     }
-    return routes
+    return setupLayouts(routes)
   },
   history: createWebHistory()
 })
