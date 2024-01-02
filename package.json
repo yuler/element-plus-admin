@@ -6,10 +6,11 @@
   "packageManager": "pnpm@8.13.1",
   "author": "yuler <is.yuler@gmail.com>",
   "scripts": {
-    "dev": "vite --open",
+    "dev": "vite",
+    "preview": "vite preview",
     "build": "vue-tsc --noEmit && vite build",
     "build:visualizer": "VISUALIZER=true vite build",
-    "preview": "vite preview",
+    "clean": "rm -rf dist && rm -rf src/{auto-imports,components}.d.ts",
     "prettier": "npx prettier",
     "g": "plop",
     "up": "pnpm dlx taze -I"
@@ -22,12 +23,10 @@
     "nprogress": "^0.2.0",
     "pinia": "^2.1.7",
     "vue": "^3.4.3",
-    "vue-i18n": "^9.8.0",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@iconify/json": "^2.2.163",
-    "@intlify/vite-plugin-vue-i18n": "^7.0.0",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20.10.6",
     "@types/nprogress": "^0.2.3",

@@ -1,7 +1,3 @@
 {
-  "recommendations": [
-    "vue.volar",
-    "esbenp.prettier-vscode",
-    "Lokalise.i18n-ally"
-  ]
+  "recommendations": ["vue.volar", "esbenp.prettier-vscode"]
 }

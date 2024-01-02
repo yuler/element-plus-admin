@@ -6,5 +6,5 @@ meta:
 <script lang="ts" setup></script>
 
 <template>
-  <el-button>Button</el-button>
+  <p>xxx</p>
 </template>

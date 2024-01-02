@@ -8,7 +8,6 @@ import Components from 'unplugin-vue-components/vite'
 import {ElementPlusResolver} from 'unplugin-vue-components/resolvers'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
-import VueI18n from '@intlify/vite-plugin-vue-i18n'
 import AutoImport from 'unplugin-auto-import/vite'
 import Unocss from 'unocss/vite'
 import Inspect from 'vite-plugin-inspect'
@@ -40,7 +39,6 @@ export default defineConfig(({mode}) => {
 
       Vue({
         include: [/\.vue$/, /\.md$/],
-        reactivityTransform: true,
       }),
 
       // https://github.com/hannoeru/vite-plugin-pages
@@ -64,7 +62,6 @@ export default defineConfig(({mode}) => {
         imports: [
           'vue',
           'vue-router',
-          'vue-i18n',
           'vue/macros',
           '@vueuse/head',
           '@vueuse/core',
@@ -83,7 +80,6 @@ export default defineConfig(({mode}) => {
           }),
           ElementPlusResolver({
             importStyle: 'css',
-            ssr: true,
           }),
         ],
         extensions: ['vue', 'md', 'ts'],
@@ -100,13 +96,6 @@ export default defineConfig(({mode}) => {
       // https://github.com/antfu/unocss
       // see unocss.config.ts for config
       Unocss(),
-
-      // https://github.com/intlify/bundle-tools/tree/main/packages/vite-plugin-vue-i18n
-      VueI18n({
-        runtimeOnly: true,
-        compositionOnly: true,
-        include: [path.resolve(__dirname, 'locales/**')],
-      }),
 
       // https://github.com/antfu/vite-plugin-inspect
       // Visit http://localhost:3333/__inspect/ to see the inspector

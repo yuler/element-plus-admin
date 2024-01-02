@@ -1,6 +1,6 @@
 <route lang="yaml">
 meta:
-  title: t('login.title')
+  title: 登录
   icon: list
   hideInMenu: true
   layout: blank
@@ -8,9 +8,7 @@ meta:
 
 <script lang="ts" setup>
 import type {FormInstance, FormRules} from 'element-plus'
-import {api} from '~/utils'
-
-const {t} = useI18n()
+// import {api} from '~/utils'
 
 const form = reactive({
   username: '',
@@ -23,34 +21,29 @@ const formRules = reactive<FormRules>({
 })
 
 async function onSubmit() {
-  await formRef.value?.validate(async (valid, fields) => {
-    if (!valid) return
-
-    console.log('submit! TODO:')
-
-    const result = await api
-      .post('posts', {
-        json: {
-          ...form,
-        },
-      })
-      .json()
-
-    console.log(result)
-  })
+  // await formRef.value?.validate(async (valid, fields) => {
+  //   if (!valid) return
+  //   console.log('submit! TODO:')
+  //   const result = await api
+  //     .post('posts', {
+  //       json: {
+  //         ...form,
+  //       },
+  //     })
+  //     .json()
+  //   console.log(result)
+  // })
 }
 
 function onReset() {
   if (!formRef) return
-  debugger
   formRef.value?.resetFields()
 }
 </script>
 
 <template>
-  <!-- TODO: UI style -->
   <div w="80" mt="15%" mx="auto">
-    <h1 text="center">{{ t('title') }}</h1>
+    <h1 text="center">登录</h1>
     <el-form ref="formRef" :model="form" :rules="formRules" :label-width="80">
       <el-form-item label="用户名" prop="username">
         <el-input
@@ -73,12 +66,3 @@ function onReset() {
     </el-form>
   </div>
 </template>
-
-<i18n lang="yaml">
-zh-CN:
-  title: 登录
-en:
-  title: Login
-jp:
-  title: ログイン
-</i18n>

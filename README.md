@@ -11,7 +11,6 @@
 <!-- - 📲 [PWA](https://github.com/antfu/vite-plugin-pwa) -->
 - 🎨 [UnoCSS](https://github.com/antfu/unocss) - the instant on-demand atomic CSS engine
 - 😃 [Use icons from any icon sets with classes](https://github.com/antfu/unocss/tree/main/packages/preset-icons)
-- 🌍 I18n ready power by [vue-i18n](https://github.com/intlify/vue-i18n-next)
 <!-- - 🔎 [Component Preview](https://github.com/antfu/vite-plugin-vue-component-preview)
 - 🗒 [Markdown Support](https://github.com/antfu/vite-plugin-vue-markdown) -->
 - 🔥 Use the [new `<script setup>` syntax](https://github.com/vuejs/rfcs/pull/227)
