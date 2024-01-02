@@ -1,15 +1,15 @@
 import type {RouteRecordRaw} from 'vue-router'
-import pages from '~pages'
+import { routes as _routes } from 'vue-router/auto/routes'
 
 export const MENUS: RouteRecordRaw[] = []
 ;(function generateMenus() {
   if (MENUS.length) return
 
-  const routes = pages
+  const routes = _routes
     // Simple clone
-    .map(page => {
+    .map(route => {
       return {
-        ...page,
+        ...route,
       }
     })
     .sort((a, b) => {

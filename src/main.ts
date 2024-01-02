@@ -1,9 +1,7 @@
-import {createRouter, createWebHistory} from 'vue-router'
 import {isClient} from '@vueuse/core'
-
+import {createRouter, createWebHistory} from 'vue-router/auto'
+import { routes as _routes } from 'vue-router/auto/routes'
 import {setupLayouts} from 'virtual:generated-layouts'
-import pages from '~pages'
-
 import type {UserModule} from './types'
 import App from './App.vue'
 
@@ -16,8 +14,19 @@ import './main.css'
 const app = createApp(App)
 
 // Setup routes
-const routes = setupLayouts(pages)
-const router = createRouter({history: createWebHistory(), routes})
+const routes = setupLayouts(_routes)
+const router = createRouter({
+  extendRoutes(routes) {
+    for (const route of routes) {
+      route.meta ??= {}
+      if (route.meta.sortInMenu === undefined) {
+        route.meta.sortInMenu = 1000
+      }
+    }
+    return routes
+  },
+  history: createWebHistory()
+})
 app.use(router)
 
 // Install all modules under `modules/`

@@ -18,3 +18,4 @@ dist
 # d.ts
 auto-imports.d.ts
 components.d.ts
+typed-router.d.ts

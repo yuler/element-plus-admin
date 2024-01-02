@@ -2,7 +2,8 @@ import path from 'node:path'
 import {defineConfig, splitVendorChunkPlugin, loadEnv} from 'vite'
 import visualizer from 'rollup-plugin-visualizer'
 import Vue from '@vitejs/plugin-vue'
-import Pages from 'vite-plugin-pages'
+import VueRouter from 'unplugin-vue-router/vite'
+import { VueRouterAutoImports } from 'unplugin-vue-router'
 import Layouts from 'vite-plugin-vue-layouts'
 import Components from 'unplugin-vue-components/vite'
 import {ElementPlusResolver} from 'unplugin-vue-components/resolvers'
@@ -37,20 +38,10 @@ export default defineConfig(({mode}) => {
 
       splitVendorChunkPlugin(),
 
+      VueRouter(),
+
       Vue({
         include: [/\.vue$/, /\.md$/],
-      }),
-
-      // https://github.com/hannoeru/vite-plugin-pages
-      Pages({
-        exclude: ['**/components/*.vue'],
-        extensions: ['vue'],
-        extendRoute(route) {
-          // TODO: Set default route meta
-          if (!route.meta) route.meta = {}
-          if (route.meta.sortInMenu === undefined) route.meta.sortInMenu = 1000
-          return route
-        },
       }),
 
       // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
@@ -61,7 +52,7 @@ export default defineConfig(({mode}) => {
         dirs: ['src/composables', 'src/store'],
         imports: [
           'vue',
-          'vue-router',
+          VueRouterAutoImports,
           'vue/macros',
           '@vueuse/head',
           '@vueuse/core',
