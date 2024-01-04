@@ -11,6 +11,9 @@ dependencies:
   '@vueuse/core':
     specifier: ^10.7.1
     version: 10.7.1(vue@3.4.3)
+  '@yuler/utils':
+    specifier: ^0.2.0
+    version: 0.2.0
   element-plus:
     specifier: ^2.4.4
     version: 2.4.4(vue@3.4.3)
@@ -1412,6 +1415,11 @@ packages:
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
+    dev: false
+
+  /@yuler/utils@0.2.0:
+    resolution: {integrity: sha512-jvOh7sn1dYrthL0gS0LPIWn2mxi5W+sROXnEHxN+tZjzmhfsDVPMdncsKmZY5Nj/N4uTIOexpUUrUA7WzKqUfQ==}
+    engines: {node: '>=18'}
     dev: false
 
   /acorn-walk@8.3.1:
