@@ -1,8 +1,40 @@
 import Cookies from 'js-cookie'
 import {defineStore} from 'pinia'
-import type {AppDevice} from '../types'
+import {defaultTheme} from '../config'
+import type {AppDevice, AppTheme} from '../types'
+
+const APP_THEME = 'APP_THEME'
+
+function normalizeTheme(value: string | undefined): AppTheme {
+  return value === 'china' ? value : defaultTheme
+}
+
+function applyTheme(value: AppTheme) {
+  if (typeof document === 'undefined') return
+  document.documentElement.dataset.theme = value
+}
 
 export const useAppStore = defineStore('app', () => {
+  const theme = ref<AppTheme>(normalizeTheme(Cookies.get(APP_THEME)))
+  watch(
+    theme,
+    value => {
+      if (value === defaultTheme) {
+        Cookies.remove(APP_THEME)
+      } else {
+        Cookies.set(APP_THEME, value)
+      }
+      applyTheme(value)
+    },
+    {immediate: true},
+  )
+  function setTheme(value: AppTheme) {
+    theme.value = normalizeTheme(value)
+  }
+  function themeToggle() {
+    setTheme(theme.value === 'china' ? defaultTheme : 'china')
+  }
+
   const device = ref<AppDevice>('desktop')
   function setDevice(value: AppDevice) {
     device.value = value
@@ -31,6 +63,9 @@ export const useAppStore = defineStore('app', () => {
   }
 
   return {
+    theme,
+    setTheme,
+    themeToggle,
     device,
     asideCollapsed,
     asideCollapse,

@@ -1,11 +1,14 @@
 <script lang="ts" setup>
-import {config} from '~/config'
+import {getThemeConfig} from '~/config'
 
 setupWindowResize()
 
 const appStore = useAppStore()
 const {asideToggle, drawerCollapse, drawerToggle} = appStore
-const {device, asideCollapsed, drawerDisplay} = storeToRefs(appStore)
+const {device, asideCollapsed, drawerDisplay, theme} = storeToRefs(appStore)
+const config = computed(() => getThemeConfig(theme.value))
+const drawerBgColor = computed(() => config.value.drawer.bgColor)
+const drawerPadding = computed(() => config.value.drawer.padding)
 
 function onToggleMenuCollapsed() {
   if (device.value === 'mobile') {
@@ -17,7 +20,7 @@ function onToggleMenuCollapsed() {
 </script>
 
 <template>
-  <el-container>
+  <el-container class="app-layout">
     <el-aside
       v-if="device != 'mobile'"
       translate="width-ease-200"
@@ -43,8 +46,18 @@ function onToggleMenuCollapsed() {
       </el-drawer>
     </div>
 
-    <el-container bg="#f5f7f9">
-      <el-header h="64px" bg="white">
+    <el-container
+      class="app-layout__body"
+      :style="{background: config.layout.bgColor}"
+    >
+      <el-header
+        class="app-layout__header"
+        h="64px"
+        :style="{
+          background: config.layout.headerBgColor,
+          borderColor: config.layout.headerBorderColor,
+        }"
+      >
         <Navbar @update:collapsed="onToggleMenuCollapsed" />
       </el-header>
       <el-main>
@@ -56,9 +69,18 @@ function onToggleMenuCollapsed() {
 </template>
 
 <style>
-/* TODO: */
+.app-layout,
+.app-layout__body {
+  min-height: 100vh;
+}
+
+.app-layout__header {
+  border-bottom: 1px solid transparent;
+  box-sizing: border-box;
+}
+
 .el-drawer {
-  --el-drawer-bg-color: v-bind('config.drawer.bgColor') !important;
-  --el-drawer-padding-primary: v-bind('config.drawer.padding') !important;
+  --el-drawer-bg-color: v-bind('drawerBgColor') !important;
+  --el-drawer-padding-primary: v-bind('drawerPadding') !important;
 }
 </style>

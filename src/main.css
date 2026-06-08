@@ -6,8 +6,91 @@ body,
   padding: 0;
 }
 
+:root {
+  --admin-page-bg: #f5f7f9;
+}
+
 html.dark {
   background: #121212;
+}
+
+body {
+  background: var(--admin-page-bg);
+}
+
+html[data-theme='china'] {
+  --admin-page-bg: #f8f1e8;
+  --el-color-primary: #bf1e2e;
+  --el-color-primary-light-3: #d45c61;
+  --el-color-primary-light-5: #e19287;
+  --el-color-primary-light-7: #efc0ae;
+  --el-color-primary-light-8: #f6d8c7;
+  --el-color-primary-light-9: #fff2e2;
+  --el-color-primary-dark-2: #8f1622;
+  --el-color-success: #2f7d54;
+  --el-color-warning: #b97812;
+  --el-color-danger: #a7171f;
+  --el-color-info: #7a6757;
+  --el-bg-color: #fffaf1;
+  --el-bg-color-page: #f8f1e8;
+  --el-bg-color-overlay: #fffdf8;
+  --el-text-color-primary: #3a2021;
+  --el-text-color-regular: #5d3b34;
+  --el-text-color-secondary: #836357;
+  --el-text-color-placeholder: #b39783;
+  --el-border-color: #ead7ba;
+  --el-border-color-light: #f0dfc6;
+  --el-border-color-lighter: #f7ead6;
+  --el-border-color-extra-light: #fbf2e7;
+  --el-fill-color: #f7ead6;
+  --el-fill-color-light: #fbf1e3;
+  --el-fill-color-lighter: #fff6ea;
+  --el-fill-color-extra-light: #fffaf1;
+  --el-fill-color-blank: #fffdf8;
+  --el-border-radius-base: 2px;
+  --el-border-radius-small: 2px;
+  --el-main-padding: 24px;
+  --el-box-shadow-light: 0 12px 28px rgb(128 38 30 / 0.12);
+  background: var(--admin-page-bg);
+  color: var(--el-text-color-primary);
+}
+
+html[data-theme='china'] .el-button--primary {
+  --el-button-bg-color: var(--el-color-primary);
+  --el-button-border-color: var(--el-color-primary);
+  --el-button-hover-bg-color: #d83a3f;
+  --el-button-hover-border-color: #d83a3f;
+  --el-button-active-bg-color: var(--el-color-primary-dark-2);
+  --el-button-active-border-color: var(--el-color-primary-dark-2);
+}
+
+html[data-theme='china'] .el-input__wrapper,
+html[data-theme='china'] .el-textarea__inner,
+html[data-theme='china'] .el-select__wrapper {
+  background-color: #fffdf8;
+  box-shadow: 0 0 0 1px var(--el-border-color) inset;
+}
+
+html[data-theme='china'] .el-input__wrapper.is-focus,
+html[data-theme='china'] .el-textarea__inner:focus,
+html[data-theme='china'] .el-select__wrapper.is-focused {
+  box-shadow: 0 0 0 1px var(--el-color-primary) inset;
+}
+
+html[data-theme='china'] .el-menu {
+  border-right: 0;
+}
+
+html[data-theme='china'] .el-menu-item,
+html[data-theme='china'] .el-sub-menu__title {
+  height: 44px;
+  line-height: 44px;
+  margin: 4px 10px;
+  border-radius: 2px;
+}
+
+html[data-theme='china'] .el-menu-item.is-active {
+  box-shadow: inset 3px 0 0 #f4cf77, 0 8px 18px rgb(58 18 18 / 0.16);
 }
 
 #nprogress {
@@ -24,6 +107,6 @@ html.dark {
   height: 2px;
 }
 
-/* TODO: custom theme
---el-main-padding
-*/
+html[data-theme='china'] #nprogress .bar {
+  background: linear-gradient(90deg, #bf1e2e, #f4cf77);
+}
