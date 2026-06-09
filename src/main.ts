@@ -15,7 +15,7 @@ const app = createApp(App)
 
 // Setup routes
 const router = createRouter({
-  routes: setupLayouts(routes),
+  routes: setupLayouts([...routes]),
   history: createWebHistory(),
 })
 app.use(router)

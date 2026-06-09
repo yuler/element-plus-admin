@@ -3,6 +3,16 @@ defineProps({
   collapsed: Boolean,
 })
 defineEmits(['update:collapsed'])
+
+const appStore = useAppStore()
+const {theme} = storeToRefs(appStore)
+const isChinaTheme = computed({
+  get: () => theme.value === 'china',
+  set: value => appStore.setTheme(value ? 'china' : 'default'),
+})
+const themeTip = computed(() =>
+  isChinaTheme.value ? '切换为默认主题' : '切换为中国主题',
+)
 </script>
 
 <template>
@@ -29,6 +39,18 @@ defineEmits(['update:collapsed'])
       </el-breadcrumb>
     </div>
     <div class="h-full flex">
+      <div class="h-full px-4 flex items-center">
+        <el-tooltip :content="themeTip" placement="bottom">
+          <el-switch
+            v-model="isChinaTheme"
+            class="theme-switch"
+            inline-prompt
+            active-text="中"
+            inactive-text="默"
+            :aria-label="themeTip"
+          />
+        </el-tooltip>
+      </div>
       <div class="h-full px-4 cursor-pointer flex items-center">
         <el-icon size="18" class="h-full">
           <icon-ant-design-SearchOutlined />
@@ -60,3 +82,10 @@ defineEmits(['update:collapsed'])
     </div>
   </div>
 </template>
+
+<style scoped>
+.theme-switch {
+  --el-switch-on-color: #bf1e2e;
+  --el-switch-off-color: #2d8cf0;
+}
+</style>

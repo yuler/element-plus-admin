@@ -31,6 +31,8 @@ declare module 'vue' {
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
+    ElSwitch: typeof import('element-plus/es')['ElSwitch']
+    ElTooltip: typeof import('element-plus/es')['ElTooltip']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     IconAntDesignGithubOutlined: typeof import('~icons/ant-design/github-outlined')['default']
     IconAntDesignLockOutlined: typeof import('~icons/ant-design/lock-outlined')['default']
